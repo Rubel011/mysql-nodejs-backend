@@ -10,7 +10,7 @@ const options = {
         },
         servers: [
             {
-                url: "http://52.22.2.243:8080/"
+                url: "http://54.196.52.191:8080/"
             },
             {
                 url: "http://localhost:8080/"
