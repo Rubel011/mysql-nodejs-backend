@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const PORT = process.env.PORT || 8080
 const db = require('./models');
 const { errorResponse, successResponse } = require('./helpers/successAndError');
@@ -8,6 +9,7 @@ const swaggerUI = require("swagger-ui-express");
 const specs = require('./config/swaggerConfig');
 
 app.use(express.json());
+app.use(cors())
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/users", userRouter)
 
