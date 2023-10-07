@@ -6,7 +6,7 @@ This is the QuadB Tech Node.js backend project, where you can register, log in, 
 
 You can explore the API documentation using Swagger UI. Access the documentation by navigating to:
 
-   http://54.196.52.191:8080/api-docs
+   https://quadb-nodejs-qxb9.onrender.com/api-docs
 
 ## Functionality
 
@@ -21,7 +21,7 @@ The API includes the following functionality:
 
 The backend of this project is deployed on AWS and can be accessed via the following link: 
 
-[Backend Deployment Link](http://54.196.52.191:8080/)
+[Backend Deployment Link](https://quadb-nodejs-qxb9.onrender.com/)
 
 
 ## Backend-Routes
@@ -34,18 +34,16 @@ The backend of this project is deployed on AWS and can be accessed via the follo
   - `POST /users/insert`: insert new user (protected route using JWT).
   - `DELETE /users/delete/{user_id}`: delete the user using user_id.
 
-## Getting Started
+### Technologies Used
 
-These instructions will help you set up and run the QuadB Tech Node.js backend project on your local machine.
-
-### Prerequisites
-
-Before you begin, make sure you have the following software installed on your system:
-
-- Node.js (https://nodejs.org/)
-- MySQL (https://www.mysql.com/)
-- Sequelize CLI (https://sequelize.org/)
-- Git (https://git-scm.com/)
+- Node.js 
+- Express.js
+- MySQL
+- Sequelize
+- Sequelize-cli
+- Bcrypt
+- JWT
+- Swagger (for API documentation)
 
 ### Installation
 
@@ -66,14 +64,17 @@ Before you begin, make sure you have the following software installed on your sy
     PORT=your-database-port
     DB_USER=your-database-username
     DB_PASS=your-database-password
+    DB_Name=your-database-name
     DB_HOST=your-database-host
-    DB_NAME=your-database-name
     NODE_ENV=production
-    SECRET_KEY=your-secret-key
+    ACCESS_TOKEN_SECRET=masai-school-web
+    REFRESH_TOKEN_SECRET=masai-school
     ACCESS_TOKEN_EXPIRATION=1d
-    REFRESH_TOKEN_EXPIRATION=30d
+    REFRESH_TOKEN_EXPIRATION=24d
     EMAIL_ID=nodemailer-email-id
     GOOGLEKEY=nodemailer-google-key
+    FRONTEND_DEPLOYED_URL=#
+    BACKEND_DEPLOYED_URL=http://localhost:8080/
 
 4. Start the server:
     ```
