@@ -10,6 +10,7 @@ const specs = require('./config/swaggerConfig');
 
 app.use(express.json());
 app.use(cors())
+
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 app.use("/users", userRouter)
 
