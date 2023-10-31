@@ -11,6 +11,7 @@ const {
     deleteUserByuser_id,
     userLogin,
 } = require('../controller/userController');
+const { checkRole } = require('../middleware/authorization');
 
 // Define routes and associate them with controller functions
 
@@ -18,13 +19,13 @@ const {
 userRouter.get('/details/:user_id', getUserByuser_id);
 
 // Route to update user details
-userRouter.put('/update', authenticate, updateUser);
+userRouter.put('/update', authenticate,checkRole(["admin","superadmin"]) ,updateUser);
 
 // Route to fetch user image by user_id
 userRouter.get('/image/:user_id', getUserImageByuser_id);
 
 // Route to insert a new user
-userRouter.post('/insert', authenticate, insertNewUser);
+userRouter.post('/insert', authenticate,checkRole(["admin","superadmin"]), insertNewUser);
 
 // Route to delete a user by user_id
 userRouter.delete('/delete/:user_id', deleteUserByuser_id);

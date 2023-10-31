@@ -4,10 +4,11 @@ const { User } = require("../models/index");
 require("dotenv").config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key';
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || 'ACCESS_TOKEN_SECRET';
+const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || 'REFRESH_TOKEN_SECRET';
 const ACCESS_TOKEN_EXPIRATION = process.env.ACCESS_TOKEN_EXPIRATION || '1d';
 const REFRESH_TOKEN_EXPIRATION = process.env.REFRESH_TOKEN_EXPIRATION || '30d';
-const deploy_url=process.env.DEPLOYMENT_URL ||"#";
+const FRONTEND_DEPLOYED_URL = process.env.FRONTEND_DEPLOYED_URL || "#";
 
 module.exports.getUserByuser_id = async (req, res) => {
     try {
@@ -87,7 +88,7 @@ module.exports.insertNewUser = async (req, res) => {
             <p>Happy Exploring!</p>
             <p>Best regards,</p>
             <p>The QuadB tech Team</p>
-            <a href="${deploy_url}/login">Proceed to Login</a>
+            <a href="${FRONTEND_DEPLOYED_URL}/login">Proceed to Login</a>
           </body>
         </html>
       `,
@@ -140,9 +141,9 @@ module.exports.userLogin = async (req, res) => {
         }
 
         // Generate access and refresh tokens
-        const accessToken = jwt.sign({ user_id: user.user_id }, SECRET_KEY, { expiresIn: ACCESS_TOKEN_EXPIRATION });
+        const accessToken = jwt.sign({ userId: user.user_id }, ACCESS_TOKEN_SECRET, { expiresIn: ACCESS_TOKEN_EXPIRATION });
 
-        const refreshToken = jwt.sign({ user_id: user.user_id }, SECRET_KEY, { expiresIn: REFRESH_TOKEN_EXPIRATION });
+        const refreshToken = jwt.sign({ userId: user.user_id }, REFRESH_TOKEN_SECRET, { expiresIn: REFRESH_TOKEN_EXPIRATION });
 
         let successData = successResponse(200, 'Login successful', user)
         successData.accessToken = accessToken;
